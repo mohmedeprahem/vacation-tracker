@@ -20,7 +20,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-    AppDbInitializer.SeedUsers(context, config);
+    AppDbInitializer.Seeds(context, config);
 }
 
 // Configure the HTTP request pipeline.

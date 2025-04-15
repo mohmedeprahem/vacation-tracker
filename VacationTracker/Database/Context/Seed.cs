@@ -7,7 +7,7 @@ namespace VacationTracker.Database.Context
 {
     public static class AppDbInitializer
     {
-        public static void SeedUsers(AppDbContext context, IConfiguration config)
+        public static void Seeds(AppDbContext context, IConfiguration config)
         {
             // Seed Departments
             if (!context.Departments.Any())
