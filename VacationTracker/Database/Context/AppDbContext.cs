@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VacationTracker.Database.EntityConfiguration;
+using VacationTracker.Models;
 
 namespace VacationTracker.Database.Context
 {
@@ -7,6 +8,12 @@ namespace VacationTracker.Database.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<VacationRequest> VacationRequests { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
