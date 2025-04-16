@@ -30,6 +30,14 @@
                             </div>
 
                             <div data-mdb-input-init class="form-outline mb-4">
+                                <label asp-for="DepartmentId" class="form-label">Department</label>
+                                <select asp-for="DepartmentId" asp-items="@Model.Departments" class="form-control form-control-lg">
+                                    <option value="">-- Select Department --</option>
+                                </select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
                                 <label asp-for="Password" class="form-label" for="form3Example4cg">Password</label>
                                 <input asp-for="Password" type="password" id="form3Example4cg" class="form-control form-control-lg" />
                                 <span asp-validation-for="Password" class="text-danger"></span>

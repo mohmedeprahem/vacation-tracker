@@ -26,6 +26,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Vacation" asp-action="index">Vacations</a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <form asp-area="" asp-controller="Auth" asp-action="Logout" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

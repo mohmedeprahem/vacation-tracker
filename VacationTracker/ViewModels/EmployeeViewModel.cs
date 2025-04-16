@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace VacationTracker.ViewModels
 {
@@ -38,5 +40,11 @@ namespace VacationTracker.ViewModels
         [Display(Name = "ConfirmPassword")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Department is required")]
+        public int DepartmentId { get; set; }
+
+        [BindNever]
+        public List<SelectListItem>? Departments { get; set; }
     }
 }

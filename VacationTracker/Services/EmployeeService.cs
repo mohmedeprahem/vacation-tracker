@@ -41,13 +41,18 @@ namespace VacationTracker.Services
                 {
                     Email = body.Email,
                     PasswordHash = PasswordHasher.HashPassword(body.Password),
-                    RoleId = existingRole.Id
+                    RoleId = existingRole.Id,
                 };
                 await _unitOfWork.UserRepository.CreateOneAsync(newUser);
 
                 await _unitOfWork.SaveChangesAsync();
 
-                var employee = new Employee { FullName = body.FullName, UserId = newUser.Id, };
+                var employee = new Employee
+                {
+                    FullName = body.FullName,
+                    UserId = newUser.Id,
+                    DepartmentId = body.DepartmentId
+                };
 
                 await _unitOfWork.EmployeeRepository.CreateOneAsync(employee);
 
