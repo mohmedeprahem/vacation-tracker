@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VacationTracker.Models;
+using VacationTracker.Utilities;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace VacationTracker.Database.Context
@@ -34,9 +35,8 @@ namespace VacationTracker.Database.Context
                 var adminEmail = config["Admin:Email"];
                 var adminPassword = config["Admin:Password"];
 
-                var hasher = new PasswordHasher<User>();
                 var adminUser = new User { Email = adminEmail, RoleId = 1 };
-                adminUser.PasswordHash = hasher.HashPassword(adminUser, adminPassword);
+                adminUser.PasswordHash = PasswordHasher.HashPassword(adminPassword);
 
                 context.Users.Add(adminUser);
                 context.SaveChanges();
