@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VacationTracker.DTOs;
 
-namespace VacationTracker.Interfaces
+namespace VacationTracker.Interfaces.Services
 {
     public interface IAuthService
     {

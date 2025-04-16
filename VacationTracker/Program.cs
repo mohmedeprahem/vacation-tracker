@@ -1,9 +1,12 @@
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using VacationTracker.Database.Context;
 using VacationTracker.Interfaces;
+using VacationTracker.Interfaces.Repositories;
+using VacationTracker.Interfaces.Services;
 using VacationTracker.Repositories;
 using VacationTracker.Services;
 
@@ -29,12 +32,32 @@ builder
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])
             )
         };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["AccessToken"];
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+builder
+    .Services
+    .AddAuthorization(options =>
+    {
+        options.AddPolicy("AdminOnly", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
+        options.AddPolicy("EmployeeOnly", p => p.RequireClaim(ClaimTypes.Role, "Employee"));
     });
 
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 // Add database connection
 builder
@@ -63,8 +86,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Auth}/{action=Login}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using VacationTracker.Interfaces;
+using VacationTracker.Interfaces.Repositories;
 using VacationTracker.Repositories;
 
 namespace VacationTracker.Database.Context
@@ -10,11 +10,15 @@ namespace VacationTracker.Database.Context
         private readonly AppDbContext _dbContext;
         private IDbContextTransaction _transaction;
         public IUserRepository UserRepository { get; private set; }
+        public IEmployeeRepository EmployeeRepository { get; private set; }
+        public IRoleRepository RoleRepository { get; private set; }
 
         public UnitOfWork(AppDbContext dbContext)
         {
             _dbContext = dbContext;
             UserRepository = new UserRepository(_dbContext);
+            EmployeeRepository = new EmployeeRepository(_dbContext);
+            RoleRepository = new RoleRepository(_dbContext);
             _transaction = null;
         }
 

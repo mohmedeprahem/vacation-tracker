@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VacationTracker.DTOs;
 using VacationTracker.Interfaces;
+using VacationTracker.Interfaces.Repositories;
+using VacationTracker.Interfaces.Services;
 using VacationTracker.Utilities;
 
 namespace VacationTracker.Services
@@ -31,7 +33,8 @@ namespace VacationTracker.Services
             {
                 Id = user.Id,
                 Email = user.Email,
-                FullName = user?.Employee?.FullName ?? string.Empty
+                FullName = user?.Employee?.FullName ?? string.Empty,
+                Role = user?.Role
             };
 
             return new AuthResponseDto { Token = token, User = userDto };

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VacationTracker.Database.Context;
-using VacationTracker.Interfaces;
+using VacationTracker.Interfaces.Repositories;
 using VacationTracker.Models;
 
 namespace VacationTracker.Repositories
@@ -10,6 +10,11 @@ namespace VacationTracker.Repositories
         private readonly AppDbContext _context;
 
         public UserRepository(AppDbContext context) => _context = context;
+
+        public async Task CreateOneAsync(User user)
+        {
+            await _context.Users.AddAsync(user);
+        }
 
         public async Task<User?> GetUserByEmailAsync(string email, string[] includes = null)
         {
