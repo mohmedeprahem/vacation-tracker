@@ -1,4 +1,7 @@
 using System.Diagnostics;
+using System.Net;
+using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using VacationTracker.Interfaces.Services;
@@ -75,6 +78,15 @@ namespace VacationTracker.Controllers
                 );
                 return View(loginViewModel);
             }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Response.Cookies.Delete("AccessToken");
+
+            return RedirectToAction("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
