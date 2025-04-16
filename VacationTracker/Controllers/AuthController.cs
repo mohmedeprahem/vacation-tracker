@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using VacationTracker.Interfaces;
+using VacationTracker.Interfaces.Services;
 using VacationTracker.Models;
 using VacationTracker.ViewModels;
 
@@ -45,7 +45,7 @@ namespace VacationTracker.Controllers
                 Response
                     .Cookies
                     .Append(
-                        "Authorization",
+                        "AccessToken",
                         response.Token,
                         new CookieOptions
                         {
@@ -58,7 +58,14 @@ namespace VacationTracker.Controllers
                         }
                     );
 
-                return RedirectToAction("Index", "Home");
+                if (response.User.Role != null && response.User.Role.Name == "Admin")
+                {
+                    return RedirectToAction("Create", "Employee");
+                }
+                else
+                {
+                    return RedirectToAction("Create", "Vacation");
+                }
             }
             catch (Exception ex)
             {
