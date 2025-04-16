@@ -60,6 +60,8 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IVacationRequestRepository, VacationRequestRepository>();
+builder.Services.AddScoped<IVacationService, VacationService>();
 
 // Add database connection
 builder

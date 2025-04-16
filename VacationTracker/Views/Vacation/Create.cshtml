@@ -1,0 +1,43 @@
+﻿@using VacationTracker.ViewModels
+@model VacationRequestViewModel
+
+@{
+    ViewData["Title"] = "Create Vacation";
+}
+
+<h2 class="text-uppercase text-center mb-5">Create an Vacation</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="title">Title</label>
+        <input type="text" id="title" class="form-control" asp-for="Title" />
+    </div>
+
+    <div class="row mb-4">
+        <div class="col">
+            <label asp-for="VacationDateFrom" class="form-label" for="title">Title</label>
+            <input asp-for="VacationDateFrom" type="date" class="form-control" asp-for="VacationDateFrom" />
+            <span asp-validation-for="VacationDateFrom" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="VacationDateTo" class="form-label" for="title">Title</label>
+            <input asp-for="VacationDateTo" type="date" class="form-control" asp-for="VacationDateTo" />
+            <span asp-validation-for="VacationDateTo" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Request Vacation</button>
+</form>
+
+@if (Model?.ReturningDate != null && Model.TotalDaysRequested != null && Model.SubmissionDate != null)
+{
+    <div class="alert alert-success mt-4">
+        <h5 class="mb-3">Vacation Summary:</h5>
+        <p><strong>Returning Date:</strong> @Model.ReturningDate?.ToString("yyyy-MM-dd")</p>
+        <p><strong>Total Days Requested:</strong> @Model.TotalDaysRequested</p>
+        <p><strong>Submission Date:</strong> @Model.SubmissionDate?.ToString("yyyy-MM-dd HH:mm")</p>
+    </div>
+}

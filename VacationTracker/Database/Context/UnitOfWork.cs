@@ -13,6 +13,7 @@ namespace VacationTracker.Database.Context
         public IEmployeeRepository EmployeeRepository { get; private set; }
         public IRoleRepository RoleRepository { get; private set; }
         public IDepartmentRepository DepartmentRepository { get; private set; }
+        public IVacationRequestRepository VacationRequestRepository { get; private set; }
 
         public UnitOfWork(AppDbContext dbContext)
         {
@@ -21,6 +22,7 @@ namespace VacationTracker.Database.Context
             EmployeeRepository = new EmployeeRepository(_dbContext);
             RoleRepository = new RoleRepository(_dbContext);
             DepartmentRepository = new DepartmentRepository(_dbContext);
+            VacationRequestRepository = new VacationRequestRepository(_dbContext);
             _transaction = null;
         }
 
