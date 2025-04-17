@@ -25,7 +25,8 @@ namespace VacationTracker.Services
                 Title = model.Title,
                 VacationDateFrom = model.VacationDateFrom,
                 VacationDateTo = model.VacationDateTo,
-                EmployeeId = int.Parse(userId)
+                EmployeeId = int.Parse(userId),
+                Note = model.Note,
             };
 
             await _unitOfWork.VacationRequestRepository.CreateOneAsync(newVacation);

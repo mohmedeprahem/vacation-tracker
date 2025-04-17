@@ -13,6 +13,8 @@ namespace VacationTracker.Models
         [Required]
         public string Title { get; set; }
 
+        public string? Note { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         public DateTime VacationDateFrom { get; set; }
