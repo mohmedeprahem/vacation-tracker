@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VacationTracker.Interfaces.Services;
 using VacationTracker.ViewModels;
@@ -14,12 +15,14 @@ namespace VacationTracker.Controllers
             _vacationService = vacationService;
         }
 
+        [Authorize(policy: "EmployeeOnly")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(policy: "EmployeeOnly")]
         public async Task<IActionResult> Create(VacationRequestViewModel model)
         {
             if (!ModelState.IsValid)
@@ -61,6 +64,7 @@ namespace VacationTracker.Controllers
             }
         }
 
+        [Authorize(policy: "AdminOnly")]
         public async Task<IActionResult> Index()
         {
             try
@@ -95,6 +99,7 @@ namespace VacationTracker.Controllers
             }
         }
 
+        [Authorize(policy: "AdminOnly")]
         public async Task<IActionResult> Details(int id)
         {
             try
