@@ -1,0 +1,42 @@
+﻿@using VacationTracker.ViewModels
+@model VacationRequestViewModel
+@{
+    ViewData["Title"] = "Vacation Request Details";
+    Layout = "_AdminLayout";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Vacation Request Details</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Employee Name</dt>
+            <dd class="col-sm-9">@Model.Employee.FullName</dd>
+
+            <dt class="col-sm-3">Department</dt>
+            <dd class="col-sm-9">@Model.Employee.Department.Name</dd>
+
+            <dt class="col-sm-3">Submission Date</dt>
+            <dd class="col-sm-9">@(Model.SubmissionDate.HasValue ? Model.SubmissionDate.Value.ToString("dd/MM/yyyy") : "N/A")</dd>
+
+            <dt class="col-sm-3">Vacation Period</dt>
+            <dd class="col-sm-9">@Model.VacationDateFrom.ToString("dd/MM/yyyy") to @Model.VacationDateTo.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3">Total Days</dt>
+            <dd class="col-sm-9">@Model.TotalDaysRequested</dd>
+
+            <dt class="col-sm-3">Returning Date</dt>
+            <dd class="col-sm-9">@(Model.ReturningDate.HasValue ? Model.ReturningDate.Value.ToString("dd/MM/yyyy") : "N/A")</dd>
+
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Notes</dt>
+            <dd class="col-sm-9">@Model.Note</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

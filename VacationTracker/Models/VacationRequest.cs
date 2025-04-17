@@ -49,7 +49,7 @@ namespace VacationTracker.Models
 
             for (var day = fromDate.Date; day.Date <= toDate.Date; day = day.AddDays(1))
             {
-                if (day.DayOfWeek != DayOfWeek.Friday || day.DayOfWeek != DayOfWeek.Saturday)
+                if (day.DayOfWeek != DayOfWeek.Friday && day.DayOfWeek != DayOfWeek.Saturday)
                     days++;
             }
 

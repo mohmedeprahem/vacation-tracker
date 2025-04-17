@@ -9,5 +9,8 @@ namespace VacationTracker.Interfaces.Services
             VacationRequestViewModel model,
             string userId
         );
+
+        Task<List<VacationRequest>> GetAllVacationRequestAsync();
+        Task<VacationRequest> GetVacationRequestByIdAsync(int id);
     }
 }

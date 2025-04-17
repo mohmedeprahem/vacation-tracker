@@ -29,5 +29,20 @@ namespace VacationTracker.Repositories
             }
             return await query.FirstOrDefaultAsync(x => x.Email == email);
         }
+
+        public async Task<User?> GetUserByIdAsync(int id, string[]? includes = null)
+        {
+            IQueryable<User> query = _context.Users;
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+
+            return await query.FirstOrDefaultAsync(u => u.Id == id);
+        }
     }
 }

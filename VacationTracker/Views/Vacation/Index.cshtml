@@ -1,0 +1,52 @@
+﻿@using VacationTracker.ViewModels
+@model IEnumerable<VacationRequestViewModel>
+
+@{
+    ViewData["Title"] = "List Vacations";
+    Layout = "_AdminLayout";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Submission Date</th>
+            <th scope="col">
+                Employee Name
+            </th>
+            <th scope="col">
+                Department
+            </th>
+            <th>
+                From
+            </th>
+            <th>
+                To
+            </th>
+            <th>
+                More Info
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@(item.SubmissionDate.HasValue ? item.SubmissionDate.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@item.Employee.FullName</td>
+                <td>@item.Employee.Department.Name</td>
+                <td>@item.VacationDateFrom.ToString("dd/MM/yyyy")</td>
+                <td>@item.VacationDateTo.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id"
+                       class="btn btn-primary btn-sm">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

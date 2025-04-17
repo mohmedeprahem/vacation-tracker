@@ -15,7 +15,7 @@ namespace VacationTracker.ViewModels
         public string Title { get; set; }
 
         [Display(Name = "Note")]
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

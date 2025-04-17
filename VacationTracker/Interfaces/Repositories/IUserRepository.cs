@@ -6,5 +6,6 @@ namespace VacationTracker.Interfaces.Repositories
     {
         Task<User?> GetUserByEmailAsync(string email, string[] includes = null);
         Task CreateOneAsync(User user);
+        Task<User?> GetUserByIdAsync(int id, string[]? includes = null);
     }
 }
