@@ -11,6 +11,6 @@ namespace VacationTracker.Interfaces.Services
         );
 
         Task<List<VacationRequest>> GetAllVacationRequestAsync();
-        Task<VacationRequest> GetVacationRequestByIdAsync(int id);
+        Task<VacationRequest?> GetVacationRequestByIdAsync(int id);
     }
 }
